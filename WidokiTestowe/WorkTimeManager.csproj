@@ -79,10 +79,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="ProgrammerControl.xaml.cs">
       <DependentUpon>ProgrammerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgrammerVM.cs" />
+    <Compile Include="ViewModels\ProgrammerVM.cs" />
     <Compile Include="ProgrammerWindow.xaml.cs">
       <DependentUpon>ProgrammerWindow.xaml</DependentUpon>
     </Compile>
@@ -111,5 +112,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
