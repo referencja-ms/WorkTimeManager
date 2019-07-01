@@ -19,14 +19,9 @@ namespace WorkTimeManager
     /// </summary>
     public partial class ProgrammerWindow : Window
     {
-        public List<Klasa> Klasa;
         public ProgrammerWindow()
         {
             InitializeComponent();
-            Klasa = new List<Klasa>();
-            Klasa.Add(new Klasa("Żaneta", "Mielczarek", 21));
-            Klasa.Add(new Klasa("Żanet", "Mielczarek", 21));
-            dataGrid1.Items.Refresh();
         }
 
     }
