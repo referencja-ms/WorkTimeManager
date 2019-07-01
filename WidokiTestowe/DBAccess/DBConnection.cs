@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WorkTimeManager.DBAccess;
 
 namespace WorkTimeManager.DBAccess
 {
@@ -21,6 +22,7 @@ namespace WorkTimeManager.DBAccess
         }
         private DBConnection()
         {
+            
             MySqlConnectionStringBuilder conStringBuilder = new MySqlConnectionStringBuilder();
             conStringBuilder.Port = uint.Parse(DBInfo.port);
             conStringBuilder.UserID = DBInfo.user;

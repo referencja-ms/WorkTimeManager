@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{40F26C63-B44D-4080-8829-66336661EE1F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WidokiTestowe</RootNamespace>
-    <AssemblyName>WidokiTestowe</AssemblyName>
+    <RootNamespace>WorkTimeManager</RootNamespace>
+    <AssemblyName>WorkTimeManager</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -72,6 +72,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CustomersManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +86,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomersManagement.xaml.cs">
+      <DependentUpon>CustomersManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBAccess\CommandsRepository.cs" />
     <Compile Include="DBAccess\DBConnection.cs" />
@@ -99,11 +109,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectsManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="ProgrammerControl.xaml.cs">
       <DependentUpon>ProgrammerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectsManagement.xaml.cs">
+      <DependentUpon>ProjectsManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersManagement.xaml.cs">
+      <DependentUpon>UsersManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ProgrammerVM.cs" />
     <Compile Include="ProgrammerWindow.xaml.cs">
