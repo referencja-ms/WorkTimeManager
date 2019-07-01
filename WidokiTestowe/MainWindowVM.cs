@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkTimeManager.DBAccess
+namespace WidokiTestowe
 {
-    class CommandsRepository
+    class MainWindowVM
     {
+
     }
 }

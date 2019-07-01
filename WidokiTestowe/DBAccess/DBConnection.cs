@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace WidokiTestowe.DBAccess
+namespace WorkTimeManager.DBAccess
 {
     class DBConnection
     {
@@ -15,10 +15,10 @@ namespace WidokiTestowe.DBAccess
         { //singleton
             get
             {
-                //if null pierwsze, else drugie
                 return instance ?? (instance = new DBConnection());
             }
         }
+        //Utworzenie połączenia z bazą
         private DBConnection()
         {
             MySqlConnectionStringBuilder conStringBuilder = new MySqlConnectionStringBuilder();
