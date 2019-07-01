@@ -19,6 +19,10 @@ namespace WorkTimeManager
     /// </summary>
     public partial class ProgrammerWindow : Window
     {
+        public ProgrammerWindow()
+        {
+            InitializeComponent();
+        }
 
     }
 }
