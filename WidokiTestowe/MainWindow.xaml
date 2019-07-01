@@ -10,9 +10,9 @@
         <Label Content="Firma X" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.49,0.436" FontFamily="Trajan Pro" FontSize="72"/>
         <Label Content="Login:" HorizontalAlignment="Left" Margin="115,105,0,0" VerticalAlignment="Top" FontFamily="Kozuka Gothic Pr6N EL" FontSize="24"/>
         <Label Content="Hasło:" HorizontalAlignment="Left" Margin="115,162,0,0" VerticalAlignment="Top" FontFamily="Kozuka Gothic Pr6N EL" FontSize="24"/>
-        <TextBox  HorizontalAlignment="Left" Margin="232,115,0,157.8" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center" Width="153" FontSize="18" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" Background="#FFFDF0F5" BorderBrush="#FF832144"/>
-        <TextBox  HorizontalAlignment="Left" Margin="232,173,0,100.8" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center" Width="153" FontSize="18" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" Background="#FFFDF2F6" BorderBrush="#FF832144"/>
+        <TextBox  Text="{Binding Login}" HorizontalAlignment="Left" Margin="232,115,0,157.8" TextWrapping="Wrap" VerticalContentAlignment="Center" Width="153" FontSize="18" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" Background="#FFFDF0F5" BorderBrush="#FF832144"/>
         <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="191,250,0,0" VerticalAlignment="Top" Width="105" Height="39" FontFamily="Kozuka Gothic Pr6N EL" FontSize="18" Foreground="White" BorderBrush="#FFFDF2F6" Background="#FF832144" Click="Button_Click"/>
+        <PasswordBox  HorizontalAlignment="Left" Margin="232,177,0,0" VerticalAlignment="Top" Width="153" Height="48" VerticalContentAlignment="Center" FontSize="14" FontFamily="Kozuka Gothic Pr6N EL" BorderBrush="#FF832144" Background="#FFFDF0F5"/>
 
     </Grid>
 </Window>

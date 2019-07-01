@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WidokiTestowe.DBAccess {
+namespace WorkTimeManager.DBAccess {
     using System;
     
     

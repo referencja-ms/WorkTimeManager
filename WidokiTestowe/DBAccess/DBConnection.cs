@@ -15,10 +15,10 @@ namespace WorkTimeManager.DBAccess
         { //singleton
             get
             {
-                //if null pierwsze, else drugie
                 return instance ?? (instance = new DBConnection());
             }
         }
+        //Utworzenie połączenia z bazą
         private DBConnection()
         {
             MySqlConnectionStringBuilder conStringBuilder = new MySqlConnectionStringBuilder();
