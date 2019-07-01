@@ -97,7 +97,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowVM.cs" />
     <Compile Include="ProgrammerWindow.xaml.cs">
       <DependentUpon>ProgrammerWindow.xaml</DependentUpon>
     </Compile>
