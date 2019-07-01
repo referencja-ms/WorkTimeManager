@@ -10,25 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WorkTimeManager
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProgrammerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProgrammerWindow : Window
     {
-        public MainWindow()
+        public List<Klasa> Klasa;
+        public ProgrammerWindow()
         {
             InitializeComponent();
+            Klasa = new List<Klasa>();
+            Klasa.Add(new Klasa("Żaneta", "Mielczarek", 21));
+            Klasa.Add(new Klasa("Żanet", "Mielczarek", 21));
+            dataGrid1.Items.Refresh();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new ProgrammerWindow().Show();
-            this.Close();
-        }
     }
 }
