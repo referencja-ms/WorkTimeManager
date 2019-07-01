@@ -10,15 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WorkTimeManager
-{
+namespace WidokiTestowe {
     /// <summary>
-    /// Interaction logic for ProgrammerWindow.xaml
+    /// Interaction logic for ProgrammerControl.xaml
     /// </summary>
-    public partial class ProgrammerWindow : Window
-    {
-
+    public partial class ProgrammerControl : UserControl {
+        public ProgrammerControl() {
+            InitializeComponent();
+        }
     }
 }

@@ -69,12 +69,20 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProgrammerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProgrammerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgrammerControl.xaml.cs">
+      <DependentUpon>ProgrammerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgrammerVM.cs" />
     <Compile Include="ProgrammerWindow.xaml.cs">
       <DependentUpon>ProgrammerWindow.xaml</DependentUpon>
     </Compile>

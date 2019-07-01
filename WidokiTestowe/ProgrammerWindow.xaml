@@ -1,23 +1,13 @@
-﻿<Window x:Class="WorkTimeManager.ProgrammerWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimeManager"
+        xmlns:WidokiTestowe="clr-namespace:WidokiTestowe" x:Class="WorkTimeManager.ProgrammerWindow"
         mc:Ignorable="d"
-        Title="ProgrammerWindow" Height="450" Width="800">
+        Title="ProgrammerWindow" Height="auto" Width="800">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="41,46,0,0" VerticalAlignment="Top" Width="189"/>
-        <Label Content="Projekty:" HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top" FontFamily="Kozuka Gothic Pr6N EL" FontSize="14"/>
-        <DataGrid x:Name="dataGrid1" ItemsSource="{Binding Klasa}" HorizontalAlignment="Left" Height="280" Margin="41,103,0,0" VerticalAlignment="Top" Width="209">
-
-        </DataGrid>
-        <DataGrid HorizontalAlignment="Left" Height="280" Margin="266,103,0,0" VerticalAlignment="Top" Width="208"/>
-        <TextBox  HorizontalAlignment="Left" Margin="506,103,0,282" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Center" Width="105" FontSize="14" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" Background="#FFFDF0F5" BorderBrush="#FF832144"/>
-        <Label Content="Ilość godzin" HorizontalAlignment="Left" Margin="506,67,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Kozuka Gothic Pr6N EL" Height="36"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="506,143,0,0" VerticalAlignment="Top" Width="105" Height="39" FontFamily="Kozuka Gothic Pr6N EL" FontSize="18" Foreground="White" BorderBrush="#FFFDF2F6" Background="#FF832144"/>
-        <Label Content="Historia" HorizontalAlignment="Left" Margin="266,68,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Kozuka Gothic Pr6N EL" Height="41"/>
-        <Label Content="Szczegóły projektu" HorizontalAlignment="Left" Margin="41,68,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Kozuka Gothic Pr6N EL" Height="41"/>
-
+        <WidokiTestowe:ProgrammerControl HorizontalAlignment="Left" Height="484" Margin="10,10,0,0" VerticalAlignment="Top" Width="553"/>
     </Grid>
 </Window>
