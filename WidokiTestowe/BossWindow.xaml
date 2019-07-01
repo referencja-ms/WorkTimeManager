@@ -1,0 +1,27 @@
+﻿<Window x:Class="WidokiTestowe.BossWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WidokiTestowe"
+        mc:Ignorable="d"
+        Title="BossWindow" Height="600" Width="681.2">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="540
+                    " Margin="10,13,0,0" VerticalAlignment="Top" Width="657">
+            <TabItem x:Name="Statistics" Header="Statystyka">
+                <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,-0.4,0" VerticalAlignment="Top">
+                    <local:ProgrammerControl HorizontalAlignment="Left" Height="478" Margin="10,9,0,0" VerticalAlignment="Top" Width="637"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Management" Header="Zarządzanie">
+                <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,8.6,0" VerticalAlignment="Top">
+                    <local:ManagementControl HorizontalAlignment="Left" Height="461" Margin="27,29,0,0" VerticalAlignment="Top" Width="590"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Administration" Header="Administracja">
+                <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,-0.4,0" VerticalAlignment="Top"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
