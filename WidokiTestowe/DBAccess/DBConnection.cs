@@ -11,6 +11,7 @@ namespace WorkTimeManager.DBAccess
     {
         private static DBConnection instance = null;
         public MySqlConnection Connection { get; private set; }
+        public Models.User LoggedUser { get; set; }
         public static DBConnection Instance
         { //singleton
             get

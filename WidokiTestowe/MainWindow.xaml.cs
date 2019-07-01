@@ -24,12 +24,14 @@ namespace WorkTimeManager
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModels.MainWindowVM();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        //Pobranie hasła w sposób w miarę bezpieczny
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            new ProgrammerWindow().Show();
-            this.Close();
+            if (DataContext != null)
+            { ((dynamic)DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }
