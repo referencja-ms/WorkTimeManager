@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimeManager"
-        xmlns:WidokiTestowe="clr-namespace:WidokiTestowe" x:Class="WorkTimeManager.ProgrammerWindow"
+        xmlns:WidokiTestowe="clr-namespace:WorkTimeManager" x:Class="WorkTimeManager.ProgrammerWindow"
         mc:Ignorable="d"
         Title="ProgrammerWindow" Height="auto" Width="800">
     <Grid>
         <WidokiTestowe:ProgrammerControl HorizontalAlignment="Left" Height="484" Margin="10,10,0,0" VerticalAlignment="Top" Width="553"/>
+        <WidokiTestowe:ProgrammerControl HorizontalAlignment="Left" Height="100" Margin="243,276,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

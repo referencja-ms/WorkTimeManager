@@ -39,7 +39,7 @@ namespace WorkTimeManager.DBAccess {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WidokiTestowe.DBAccess.DBInfo", typeof(DBInfo).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WorkTimeManager.DBAccess.DBInfo", typeof(DBInfo).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

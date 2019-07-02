@@ -4,7 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WidokiTestowe {
+namespace WorkTimeManager.ViewModels {
     class ProgrammerVM {
+        public string Text
+        {
+            get
+            {
+                return "bla";
+            }
+            set
+            {
+                Console.WriteLine("Ustawiono");
+            }
+        }
     }
 }

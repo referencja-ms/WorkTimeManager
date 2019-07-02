@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="WidokiTestowe.ProgrammerControl"
+﻿<UserControl x:Class="WorkTimeManager.ProgrammerControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WidokiTestowe"
+             xmlns:local="clr-namespace:WorkTimeManager"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="510">
     <Grid>
@@ -14,7 +14,7 @@
         <ListBox HorizontalAlignment="Left" Height="304" Margin="194,123,0,0" VerticalAlignment="Top" Width="179"/>
         <Label Content="Historia" HorizontalAlignment="Left" Height="35" Margin="200,88,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="Podaj godziny" HorizontalAlignment="Left" Height="35" Margin="385,88,0,0" VerticalAlignment="Top" Width="93"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="378,123,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Text}" HorizontalAlignment="Left" Height="35" Margin="378,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="378,163,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.36,0.509" Height="37"/>
         <Label Content="Współpracownicy" HorizontalAlignment="Left" Height="35" Margin="10,260,0,0" VerticalAlignment="Top" Width="111"/>
         <ListBox HorizontalAlignment="Left" Height="132" Margin="10,295,0,0" VerticalAlignment="Top" Width="179"/>

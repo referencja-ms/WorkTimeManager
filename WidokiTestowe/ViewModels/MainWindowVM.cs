@@ -26,6 +26,7 @@ namespace WorkTimeManager.ViewModels
         }
         private void LogIn(object obj) //Logowanie użytkownika - wyświetlenie odpowiedniego okna
         {
+            new ProgrammerWindow().Show();
             try
             {
                 MySqlConnection conn = DBAccess.DBConnection.Instance.Connection;
@@ -44,7 +45,8 @@ namespace WorkTimeManager.ViewModels
                     Console.WriteLine("Nie zalogowano");
                 conn.Close();
             }
-            catch { Console.WriteLine("Błąd połączenia"); }
+            catch (MySql.Data.MySqlClient.MySqlException)
+                { Console.WriteLine("Błąd połączenia"); }
         }
 
     }

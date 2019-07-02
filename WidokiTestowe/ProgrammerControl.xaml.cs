@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WidokiTestowe {
+namespace WorkTimeManager {
     /// <summary>
     /// Interaction logic for ProgrammerControl.xaml
     /// </summary>
     public partial class ProgrammerControl : UserControl {
         public ProgrammerControl() {
             InitializeComponent();
+            DataContext = new ViewModels.ProgrammerVM();
         }
     }
 }
