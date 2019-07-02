@@ -7,14 +7,29 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkTimeManager.Models;
 using MySql.Data.MySqlClient;
+using System.ComponentModel;
 
 namespace WorkTimeManager.ViewModels
 {
-    class MainWindowVM
+    class MainWindowVM : INotifyPropertyChanged
     {
+        private string _errortext;
         #region Properties
         public string Login { private get; set; }
         public string Password { private get; set; }
+        public string ErrorText
+        {
+            get
+            {
+                return _errortext;
+            }
+            private set
+            {
+                _errortext = value;
+                Console.WriteLine("Wchodzę do ErrorString: " + _errortext);
+                OnPropertyChanged("ErrorText");
+            }
+        }
         #endregion
         #region Commands
         public ICommand LoginButtonClickedCommand { get; private set; }
@@ -24,29 +39,34 @@ namespace WorkTimeManager.ViewModels
         {
             LoginButtonClickedCommand = new RelayCommand(LogIn);
         }
+
+        #region PropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
         private void LogIn(object obj) //Logowanie użytkownika - wyświetlenie odpowiedniego okna
         {
-            try
+            string result = DBAccess.CommandsRepository.GET_LOGIN_WITH_PASSWORD(Login, Password);
+            if (result == "no-user")
             {
-                MySqlConnection conn = DBAccess.DBConnection.Instance.Connection;
-                conn.Open();
-                MySqlCommand getUser = DBAccess.CommandsRepository.GET_LOGIN_WITH_PASSWORD(Login, Password);
-                getUser.Connection = conn;
-                Console.WriteLine(Login);
-                Console.WriteLine(Password.ToString());
-                object result = getUser.ExecuteScalar();
-                if (result != null) {
-                    DBAccess.DBConnection.LoggedUser = new User(Login);
-                    conn.Close();
-                    new ProgrammerWindow().Show();
-                }
-                    
-                else
-                    Console.WriteLine("Nie zalogowano");
-                conn.Close();
+                ErrorText="Brak użytkownika w bazie";
+                Console.WriteLine("Brak użytkownika");
             }
-            catch (MySql.Data.MySqlClient.MySqlException)
-                { Console.WriteLine("Błąd połączenia"); }
+            else if (result == "no-connection")
+            {
+                Console.WriteLine("Błąd połączenia");
+            }
+            else
+            {
+                Console.WriteLine("Zalogowano");
+                Console.WriteLine(DBAccess.DBConnection.Instance.LoggedUser.Login);
+                Password = "";
+            }
+
         }
 
     }
