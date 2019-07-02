@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WidokiTestowe"
+        xmlns:WorkTimeManager="clr-namespace:WorkTimeManager"
         mc:Ignorable="d"
         Title="BossWindow" Height="600" Width="681.2">
     <Grid>
@@ -11,7 +12,7 @@
                     " Margin="10,13,0,0" VerticalAlignment="Top" Width="657">
             <TabItem x:Name="Statistics" Header="Statystyka">
                 <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,-0.4,0" VerticalAlignment="Top">
-                    <local:ProgrammerControl HorizontalAlignment="Left" Height="478" Margin="10,9,0,0" VerticalAlignment="Top" Width="637"/>
+                    <WorkTimeManager:ProgrammerControl HorizontalAlignment="Left" Height="478" Margin="10,9,0,0" VerticalAlignment="Top" Width="637"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Management" Header="Zarządzanie">

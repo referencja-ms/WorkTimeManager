@@ -52,5 +52,37 @@ namespace WorkTimeManager.DBAccess
             }
         }
 
+        public static string GET_PROJECT_WITHOUT_MANAGER()
+        {
+            try
+            {
+                conn.Open();
+                //utworzenie zapytania do bazy o projekty bez projekt menadżera
+                MySqlCommand command = conn.CreateCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT name FROM projects WHERE id = (SELECT DISTINCT projectID FROM worktasks WHERE projectID NOT IN(SELECT DISTINCT projectID FROM worktasks WHERE roleID = \"Menedżer projektu\")); ";
+
+                //sprawdzenie, czy baza zwróciła cokolwiek
+                object result = command.ExecuteScalar();
+                //jeśli zwróciła
+                if (result != null)
+                {
+                    return "1";
+                }
+                //jeśli nie zwróciła - wszystkie projekty mają kierownika
+                else { return "Wszystkie projekty mają menadżerów"; }
+
+            }
+            //obsługa błędu połączenia z bazą
+            catch (MySqlException)
+            {
+                return "no-connection";
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
 }

@@ -120,6 +120,7 @@
     <Compile Include="ProgrammerControl.xaml.cs">
       <DependentUpon>ProgrammerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BossVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\ProgrammerVM.cs" />
     <Compile Include="ProgrammerWindow.xaml.cs">

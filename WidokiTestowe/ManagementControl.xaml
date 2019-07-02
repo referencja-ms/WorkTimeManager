@@ -10,19 +10,19 @@
             <RowDefinition Height="7*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <ListBox HorizontalAlignment="Left" Height="264" Margin="199,48,0,0" VerticalAlignment="Top" Width="175"/>
-        <ListBox HorizontalAlignment="Left" Height="264" Margin="9,97,0,0" VerticalAlignment="Top" Width="175" Grid.RowSpan="2"/>
-        <ListBox HorizontalAlignment="Left" Height="264" Margin="389,48,0,0" VerticalAlignment="Top" Width="175"/>
-        <Button Content="Zatwierdź" HorizontalAlignment="Left" Margin="202,326,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.RowSpan="2"/>
-        <Button Content="Odrzuć" HorizontalAlignment="Left" Margin="201,21.4,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.Row="1"/>
-        <Button Content="Zatwierdź" HorizontalAlignment="Left" Margin="390,325,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.RowSpan="2"/>
-        <Button Content="Odrzuć" HorizontalAlignment="Left" Margin="389,20.4,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.Row="1"/>
-        <ComboBox HorizontalAlignment="Left" Margin="9,45,0,0" VerticalAlignment="Top" Width="175" Height="40"/>
-        <Button Content="Dodaj menedżera" HorizontalAlignment="Left" Margin="6,20.4,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.Row="1"/>
+        <ListBox ItemsSource="{Binding RequestsList}" SelectedIndex="{Binding SelectedRequestsList}" HorizontalAlignment="Left" Height="264" Margin="199,48,0,0" VerticalAlignment="Top" Width="175"/>
+        <ListBox ItemsSource="{Binding ProjectsNoManager}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="264" Margin="9,97,0,0" VerticalAlignment="Top" Width="175" Grid.RowSpan="2"/>
+        <ListBox ItemsSource="{Binding ProjectsJudgeReady}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="264" Margin="389,48,0,0" VerticalAlignment="Top" Width="175"/>
+        <Button Command="{Binding GiveProgramer}" Content="Zatwierdź" HorizontalAlignment="Left" Margin="202,326,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.RowSpan="2"/>
+        <Button Command="{Binding NotGiveProgramer}" Content="Odrzuć" HorizontalAlignment="Left" Margin="201,21.4,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.Row="1"/>
+        <Button Command="{Binding GoodProject}" Content="Zatwierdź" HorizontalAlignment="Left" Margin="390,325,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.RowSpan="2"/>
+        <Button Command="{Binding BadProject}" Content="Odrzuć" HorizontalAlignment="Left" Margin="389,20.4,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.Row="1"/>
+        <ComboBox ItemsSource="{Binding AvailableProgramers}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Margin="9,45,0,0" VerticalAlignment="Top" Width="175" Height="40"/>
+        <Button Command="{Binding AddManager}" Content="Dodaj menedżera" HorizontalAlignment="Left" Margin="6,20.4,0,0" VerticalAlignment="Top" Width="175" Height="40" Grid.Row="1"/>
   
-        <Label Content="Projekty bez menedżerów" HorizontalAlignment="Left" Margin="11,3,0,0" VerticalAlignment="Top" Height="40" Width="175"/>
-        <Label Content="Akceptacja projektów" HorizontalAlignment="Left" Margin="200,6,0,0" VerticalAlignment="Top" Height="40" Width="175"/>
-        <Label Content="Prośby o pracowników" HorizontalAlignment="Left" Margin="389,8,0,0" VerticalAlignment="Top" Height="40" Width="175"/>
+        <Label Content="Wybierz menedżera projektu" HorizontalAlignment="Left" Margin="11,3,0,0" VerticalAlignment="Top" Height="40" Width="175"/>
+        <Label Content="Prośby o pracowników" HorizontalAlignment="Left" Margin="200,6,0,0" VerticalAlignment="Top" Height="40" Width="175"/>
+        <Label Content="Akceptacja projektów" HorizontalAlignment="Left" Margin="389,8,0,0" VerticalAlignment="Top" Height="40" Width="175"/>
 
     </Grid>
 </UserControl>
