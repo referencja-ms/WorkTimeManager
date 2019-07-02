@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimeManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="500">
+        Title="MainWindow" Height="359.6" Width="500">
     <Grid>
         <Label Content="Firma X" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.49,0.436" FontFamily="Trajan Pro" FontSize="72"/>
         <Label Content="Login:" HorizontalAlignment="Left" Margin="81,105,0,0" VerticalAlignment="Top" FontFamily="Kozuka Gothic Pr6N EL" FontSize="24"/>
         <Label Content="Hasło:" HorizontalAlignment="Left" Margin="81,163,0,0" VerticalAlignment="Top" FontFamily="Kozuka Gothic Pr6N EL" FontSize="24"/>
         <TextBox  Text="{Binding Login}" HorizontalAlignment="Left" Margin="182,115,0,157.8" TextWrapping="Wrap" VerticalContentAlignment="Center" Width="232" FontSize="18" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" Background="#FFFDF0F5" BorderBrush="#FF832144" Height="40"/>
-        <Button Command="{Binding LoginButtonClickedCommand}" Content="Zaloguj" HorizontalAlignment="Left" Margin="191,250,0,0" VerticalAlignment="Top" Width="105" Height="39" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="18" Foreground="White" BorderBrush="#FFFDF2F6" Background="#FF832144"/>
+        <Button Command="{Binding LoginButtonClickedCommand}" Content="Zaloguj" HorizontalAlignment="Left" Margin="190,245,0,0" VerticalAlignment="Top" Width="105" Height="39" Padding="5,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="18" Foreground="White" BorderBrush="#FFFDF2F6" Background="#FF832144"/>
         <PasswordBox  PasswordChanged="PasswordBox_PasswordChanged" HorizontalAlignment="Left" Margin="182,177,0,0" VerticalAlignment="Top" Width="232" Height="40" VerticalContentAlignment="Center" FontSize="14" FontFamily="Kozuka Gothic Pr6N EL" BorderBrush="#FF832144" Background="#FFFDF0F5"/>
-        <Label Content="{Binding ErrorText, Mode=OneWay}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="22,289,0,-0.2" VerticalAlignment="Top" Width="450" Height="32" FontFamily="Kozuka Gothic Pr6N EL"/>
+        <Label Content="{Binding ErrorText, Mode=OneWay}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="22,289,0,-0.2" VerticalAlignment="Top" Width="450" Height="32" FontFamily="Kozuka Gothic Pr6N EL"/>
 
     </Grid>
 </Window>

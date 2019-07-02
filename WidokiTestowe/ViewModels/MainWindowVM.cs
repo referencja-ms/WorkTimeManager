@@ -53,18 +53,28 @@ namespace WorkTimeManager.ViewModels
             string result = DBAccess.CommandsRepository.GET_LOGIN_WITH_PASSWORD(Login, Password);
             if (result == "no-user")
             {
-                ErrorText="Brak użytkownika w bazie";
-                Console.WriteLine("Brak użytkownika");
+                ErrorText="Błędny login lub hasło";
             }
             else if (result == "no-connection")
             {
-                Console.WriteLine("Błąd połączenia");
+                ErrorText="Błąd połączenia. Spróbuj ponownie później lub skontaktuj się z administratorem.";
             }
             else
             {
                 Console.WriteLine("Zalogowano");
-                Console.WriteLine(DBAccess.DBConnection.Instance.LoggedUser.Login);
                 Password = "";
+                switch (DBAccess.DBConnection.Instance.LoggedUser.Position)
+                {
+                    case "admin":
+                        Console.WriteLine("Okno admina");
+                        break;
+                    case "szef":
+                        new BossWindow().Show();
+                        break;
+                    default:
+                        new ProgrammerWindow().Show();
+                        break;
+                }
             }
 
         }
