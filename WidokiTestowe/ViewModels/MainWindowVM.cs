@@ -31,11 +31,8 @@ namespace WorkTimeManager.ViewModels
             {
                 MySqlConnection conn = DBAccess.DBConnection.Instance.Connection;
                 conn.Open();
-                MySqlCommand getUser = conn.CreateCommand();
-                getUser.CommandType = System.Data.CommandType.Text;
-                getUser.CommandText = "SELECT login FROM users WHERE login=@UserLogin AND password=@UserPassword";
-                getUser.Parameters.Add(new MySqlParameter("@UserLogin", Login));
-                getUser.Parameters.Add(new MySqlParameter("@UserPassword", Password.ToString()));
+                MySqlCommand getUser = DBAccess.CommandsRepository.GET_LOGIN_WITH_PASSWORD(Login, Password);
+                getUser.Connection = conn;
                 Console.WriteLine(Login);
                 Console.WriteLine(Password.ToString());
                 object result = getUser.ExecuteScalar();
