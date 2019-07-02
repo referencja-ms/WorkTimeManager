@@ -75,6 +75,8 @@
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Customer.cs" />
+    <Compile Include="ViewModels\CustomersManagementVM.cs" />
     <Page Include="CustomersManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
