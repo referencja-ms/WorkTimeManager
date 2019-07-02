@@ -33,6 +33,7 @@ namespace WorkTimeManager.ViewModels
         #endregion
         #region Commands
         public ICommand LoginButtonClickedCommand { get; private set; }
+        public event Action CloseMainWindow;
         #endregion
 
         public MainWindowVM()
@@ -61,12 +62,13 @@ namespace WorkTimeManager.ViewModels
             }
             else
             {
+                //Wyświetlenie odpowiednich okien po zalogowaniu
                 Console.WriteLine("Zalogowano");
                 Password = "";
                 switch (DBAccess.DBConnection.Instance.LoggedUser.Position)
                 {
                     case "admin":
-                        Console.WriteLine("Okno admina");
+                        //new AdminWindow().Show();
                         break;
                     case "szef":
                         new BossWindow().Show();
@@ -75,6 +77,8 @@ namespace WorkTimeManager.ViewModels
                         new ProgrammerWindow().Show();
                         break;
                 }
+                //Wywołanie eventu, który ma zamknąć okno
+                CloseMainWindow?.Invoke();
             }
 
         }

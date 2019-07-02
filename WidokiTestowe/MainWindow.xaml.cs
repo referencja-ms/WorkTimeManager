@@ -24,7 +24,15 @@ namespace WorkTimeManager
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModels.MainWindowVM();
+            ViewModels.MainWindowVM vm = new ViewModels.MainWindowVM();
+            DataContext = vm;
+            vm.CloseMainWindow += CloseWindow;
+        }
+
+        //Zamknięcie okna
+        private void CloseWindow()
+        {
+            this.Close();
         }
 
         //Pobranie hasła w sposób w miarę bezpieczny
