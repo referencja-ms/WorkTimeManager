@@ -16,11 +16,16 @@
             </TabItem>
             <TabItem x:Name="Management" Header="Zarządzanie">
                 <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,8.6,0" VerticalAlignment="Top">
-                    <local:ManagementControl HorizontalAlignment="Left" Height="461" Margin="27,29,0,0" VerticalAlignment="Top" Width="590"/>
+                    <local:ManagementControl HorizontalAlignment="Left" Height="461" Margin="29,18,0,0" VerticalAlignment="Top" Width="590"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Administration" Header="Administracja">
-                <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,-0.4,0" VerticalAlignment="Top"/>
+                <Grid Background="#FFE5E5E5" Height="510" Margin="0,0,-0.4,0" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90*"/>
+                        <ColumnDefinition Width="563*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
