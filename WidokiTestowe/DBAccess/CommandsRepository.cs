@@ -13,9 +13,7 @@ namespace WorkTimeManager.DBAccess
         static MySqlConnection conn = DBConnection.Instance.Connection;
 
         //logowanie użytkownika
-        public static string GET_LOGIN_WITH_PASSWORD(string login, string password) 
-        static MySqlConnection conn = DBConnection.Instance.Connection;
-        public static MySqlCommand GET_LOGIN_WITH_PASSWORD(string login, string password)
+        public static string GET_LOGIN_WITH_PASSWORD(string login, string password)
         {
             try
             {
@@ -35,7 +33,7 @@ namespace WorkTimeManager.DBAccess
                     var reader = command.ExecuteReader();
                     reader.Read();
                     Console.WriteLine(reader["position"].ToString());
-                    DBConnection.Instance.LoggedUser = new Models.User(login, reader["position"].ToString());
+                    DBConnection.LoggedUser = new Models.User(login, reader["position"].ToString());
                     return reader["position"].ToString();
                 }
                 //jeśli nie zwróciła - brak użytkownika w bazie

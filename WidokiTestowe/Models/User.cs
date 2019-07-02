@@ -9,9 +9,11 @@ namespace WorkTimeManager.Models
     class User
     {
         public string Login { get; set; }
-        public User(string login)
+        public string Position { get; set; }
+        public User(string login, string position = "")
         {
             Login = login;
+            Position = position;
         }
     }
 }
