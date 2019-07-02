@@ -13,7 +13,7 @@ namespace WorkTimeManager.DBAccess
         static MySqlConnection conn = DBConnection.Instance.Connection;
 
         //logowanie użytkownika
-        public static string GET_LOGIN_WITH_PASSWORD(string login, string password)
+        public static string GET_LOGIN_WITH_PASSWORD(string login, string password) 
         {
             try
             {
