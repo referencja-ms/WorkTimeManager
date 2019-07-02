@@ -26,7 +26,6 @@ namespace WorkTimeManager.ViewModels
         }
         private void LogIn(object obj) //Logowanie użytkownika - wyświetlenie odpowiedniego okna
         {
-            new ProgrammerWindow().Show();
             try
             {
                 MySqlConnection conn = DBAccess.DBConnection.Instance.Connection;
@@ -36,8 +35,12 @@ namespace WorkTimeManager.ViewModels
                 Console.WriteLine(Login);
                 Console.WriteLine(Password.ToString());
                 object result = getUser.ExecuteScalar();
-                if (result != null)
-                    DBAccess.DBConnection.Instance.LoggedUser = new User(Login);
+                if (result != null) {
+                    DBAccess.DBConnection.LoggedUser = new User(Login);
+                    conn.Close();
+                    new ProgrammerWindow().Show();
+                }
+                    
                 else
                     Console.WriteLine("Nie zalogowano");
                 conn.Close();

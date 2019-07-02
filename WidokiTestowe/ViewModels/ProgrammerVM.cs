@@ -78,7 +78,7 @@ namespace WorkTimeManager.ViewModels {
             _projectDetails = new List<string>();
             SelectionChanged = new RelayCommand(LoadProjectInformations);
             AddRecord = new RelayCommand(AddNewRecord);
-            //Projects = DBAccess.CommandsRepository.GetUserProjects(CurrentUser.Name);
+            Projects = DBAccess.CommandsRepository.GetUserProjects(DBAccess.DBConnection.LoggedUser.Login);
 
         }
         public event PropertyChangedEventHandler PropertyChanged;
