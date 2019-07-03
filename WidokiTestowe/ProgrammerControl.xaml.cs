@@ -22,5 +22,9 @@ namespace WorkTimeManager {
             InitializeComponent();
             DataContext = new ViewModels.ProgrammerVM();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
     }
 }

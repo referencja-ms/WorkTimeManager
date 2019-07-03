@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="510">
     <Grid>
         <Label Content="Projekty:" HorizontalAlignment="Left" Height="32" Margin="16,10,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.72,0.477"/>
-        <ComboBox ItemsSource="{Binding Projects}"  HorizontalAlignment="Left" Height="25" Margin="10,42,0,0" VerticalAlignment="Top" Width="185"/>
+        <ComboBox ItemsSource="{Binding Projects}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="25" Margin="10,42,0,0" VerticalAlignment="Top" Width="185"/>
         <Label Content="Szczegóły" HorizontalAlignment="Left" Height="35" Margin="16,88,0,0" VerticalAlignment="Top" Width="93"/>
         <ListBox ItemsSource="{Binding ProjectDetails}" HorizontalAlignment="Left" Height="132" Margin="10,123,0,0" VerticalAlignment="Top" Width="179"/>
         <ListBox ItemsSource="{Binding ProjectHistory}" HorizontalAlignment="Left" Height="304" Margin="194,123,0,0" VerticalAlignment="Top" Width="179"/>

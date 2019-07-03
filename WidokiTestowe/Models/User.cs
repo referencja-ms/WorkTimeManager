@@ -10,7 +10,7 @@ namespace WorkTimeManager.Models
     {
         public string Login { get; set; }
         public string Position { get; set; }
-        public User(string login, string position)
+        public User(string login, string position = "")
         {
             Login = login;
             Position = position;

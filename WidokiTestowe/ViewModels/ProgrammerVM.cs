@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WorkTimeManager.Models;
 
@@ -52,7 +53,6 @@ namespace WorkTimeManager.ViewModels {
                 OnPropertyChanged("Colleagues");
             }
         }
-        public ICommand SelectionChanged { get; private set; }
         public ICommand AddRecord { get; private set; }
         public string Hours {
             get {
@@ -70,28 +70,35 @@ namespace WorkTimeManager.ViewModels {
             set {
                 _selectedIndex = value;
                 OnPropertyChanged("SelectedIndex");
+                LoadProjectInformations(this);
             }
         }
+        public string Text { get; set; }
         #endregion
         public ProgrammerVM() {
             _projects = new List<string>();
             _projectDetails = new List<string>();
-            SelectionChanged = new RelayCommand(LoadProjectInformations);
+            _projectHistory = new List<string>();
+            _colleagues = new List<string>();
+            SelectedIndex = -1;
             AddRecord = new RelayCommand(AddNewRecord);
-            //Projects = DBAccess.CommandsRepository.GetUserProjects(CurrentUser.Name);
+            Projects = DBAccess.CommandsRepository.GetUserProjects(DBAccess.DBConnection.LoggedUser.Login);
 
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        private void LoadProjectInformations(object obj) {
-            //ProjectDetails = CommandRepository.GetProjectDetails(project, stanowisko);
-            //ProjectHistory = CommandRepository.GetProjectHistoryForUser(project, user);
-            //Colleagues = CommandRepository.GetProjectColleagues(project);
+        private void LoadProjectInformations(object sender) {
+            if(SelectedIndex>=0) {
+                ProjectDetails = DBAccess.CommandsRepository.GetProjectDetails(Projects[SelectedIndex], DBAccess.DBConnection.LoggedUser.Position);
+                ProjectHistory = DBAccess.CommandsRepository.GetProjectHistoryForUser(DBAccess.DBConnection.LoggedUser.Login, Projects[SelectedIndex]);
+                Colleagues = DBAccess.CommandsRepository.GetProjectColleagues(Projects[SelectedIndex]);
+            }
         }
         private void AddNewRecord(object obj) {
-
+            DBAccess.CommandsRepository.AddRegistryNote(DateTime.Now, DBAccess.DBConnection.LoggedUser.Login, Projects[SelectedIndex], Text);
+            LoadProjectInformations(this);
         }
     }
 }
