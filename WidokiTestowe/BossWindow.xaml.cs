@@ -12,8 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WidokiTestowe
-{
+namespace WorkTimeManager {
     /// <summary>
     /// Logika interakcji dla klasy BossWindow.xaml
     /// </summary>

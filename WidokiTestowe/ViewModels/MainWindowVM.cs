@@ -63,7 +63,8 @@ namespace WorkTimeManager.ViewModels
             else
             {
                 Console.WriteLine("Zalogowano");
-                Console.WriteLine(DBAccess.DBConnection.Instance.LoggedUser.Login);
+                Console.WriteLine(DBAccess.DBConnection.LoggedUser.Login);
+                new ProgrammerWindow().Show();
                 Password = "";
             }
 

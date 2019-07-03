@@ -5,18 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace WorkTimeManager.DBAccess
-{
-    public static class CommandsRepository
-    {
+namespace WorkTimeManager.DBAccess {
+    public static class CommandsRepository {
 
         static MySqlConnection conn = DBConnection.Instance.Connection;
 
         //logowanie użytkownika
-        public static string GET_LOGIN_WITH_PASSWORD(string login, string password) 
-        {
-            try
-            {
+        public static string GET_LOGIN_WITH_PASSWORD(string login, string password) {
+            try {
                 conn.Open();
                 //utworzenie zapytania do bazy o pozycję użytkownika
                 MySqlCommand command = conn.CreateCommand();
@@ -28,8 +24,7 @@ namespace WorkTimeManager.DBAccess
                 //sprawdzenie, czy baza zwróciła cokolwiek
                 object result = command.ExecuteScalar();
                 //jeśli zwróciła
-                if (result != null)
-                {
+                if (result != null) {
                     var reader = command.ExecuteReader();
                     reader.Read();
                     Console.WriteLine(reader["position"].ToString());
@@ -42,19 +37,17 @@ namespace WorkTimeManager.DBAccess
 
             }
             //obsługa błędu połączenia z bazą
-            catch (MySqlException)
-            {
+            catch (MySqlException) {
                 return "no-connection";
             }
-            finally
-            {
+            finally {
                 conn.Close();
             }
         }
         public static List<string> GetUserProjects(string login) {
             List<Models.Project> projects = new List<Models.Project>();
             List<string> returanble = new List<string>();
-            using(MySqlCommand command = conn.CreateCommand()) {
+            using (MySqlCommand command = conn.CreateCommand()) {
                 conn.Open();
                 command.CommandText = "SELECT name from projects, worktasks WHERE id=projectid and user=@parameter1";
                 command.Parameters.AddWithValue("@parameter1", login);
@@ -63,11 +56,81 @@ namespace WorkTimeManager.DBAccess
                     projects.Add(new Models.Project(dr));
                 }
                 conn.Close();
-                foreach(var d in projects) {
+                foreach (var d in projects) {
                     returanble.Add(d.ToString());
                 }
             }
             return returanble;
+        }
+        public static List<string> GetProjectDetails(string projectName, string position) {
+            List<string> returnable = new List<string>();
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "Select id, status, budget, deadline, description from projects where name=@parameter1";
+                command.Parameters.AddWithValue("@parameter1", projectName);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    returnable.Add("Id " + dr["id"].ToString());
+                    returnable.Add("Status " + dr["status"].ToString());
+                    returnable.Add("Budget " + dr["budget"].ToString());
+                    returnable.Add("Deadline " + dr["deadline"].ToString());
+                    returnable.Add("Description " + dr["description"].ToString());
+                }
+                conn.Close();
+            }
+            return returnable;
+        }
+        public static List<string> GetProjectHistoryForUser(string login, string project) {
+            List<string> returnable = new List<string>();
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "select registryDate, hours from registry where user=@parameter1 and projectid=(select id from projects where name=@parameter2)";
+                command.Parameters.AddWithValue("@parameter1", login);
+                command.Parameters.AddWithValue("@parameter2", project);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    returnable.Add("Date: "+dr["registrydate"].ToString() + "Hours: " + dr["hours"]);
+                }
+                conn.Close();
+            }
+            return returnable;
+        }
+        public static List<string> GetProjectColleagues(string project) {
+            List<string> returnable = new List<string>();
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "select user from worktasks where projectid=(select id from projects where name=@parameter2)";
+                command.Parameters.AddWithValue("@parameter2", project);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    returnable.Add(dr["user"].ToString());
+                }
+                conn.Close();
+            }
+            return returnable;
+        }
+        public static void AddRegistryNote(DateTime dt, string name, string project, string time) {
+            int id = 0;
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "select id from projects where name=@parameter";
+                command.Parameters.AddWithValue("@parameter", project);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    id = Int32.Parse(dr["id"].ToString());
+                }
+                conn.Close();
+            }
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "INSERT into registry value(@dt, @name, @project, @time)";
+                command.Parameters.AddWithValue("@dt", dt.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@project", id.ToString());
+                command.Parameters.AddWithValue("@time", time);
+                command.ExecuteNonQuery();
+                conn.Close();
+            }
         }
     }
 }
