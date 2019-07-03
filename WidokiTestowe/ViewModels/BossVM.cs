@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkTimeManager.Models;
+using WorkTimeManager.DBAccess;
 
 namespace WorkTimeManager.ViewModels
 {
@@ -15,12 +16,13 @@ namespace WorkTimeManager.ViewModels
         private List<string> _requestsList;
         private List<string> _projectsNoManager;
         private List<string> _projectsJudgeReady;
-        private List<string> _availableProgrammers;
+        private List<string> _availableProgramers;
         private int _selectedIndex;
+        private int _selectedIndexplus;
         private string _selectedRequestsList;
         private string _selectedProjectsNoManager;
         private string _selectedProjectsJudgeReady;
-        private string _selectedAvailableProgrammers;
+        private string _selectedAvailableProgramers;
         #endregion
         #region Properties
         public List<string> RequestsList
@@ -38,7 +40,7 @@ namespace WorkTimeManager.ViewModels
             get { return _projectsNoManager; }
             set
             {
-                _requestsList = value;
+                _projectsNoManager = value;
                 OnPropertyChanged("ProjectsNoManager");
             }
         }
@@ -48,19 +50,18 @@ namespace WorkTimeManager.ViewModels
             get { return _projectsJudgeReady; }
             set
             {
-                _requestsList = value;
+                _projectsJudgeReady = value;
                 OnPropertyChanged("ProjectsJudgeReady");
             }
         }
 
-        public List<string> AvailableProgrammers
+        public List<string> AvailableProgramers
         {
-            get { return _availableProgrammers; }
+            get { return _availableProgramers; }
             set
-
             {
-                _requestsList = value;
-                OnPropertyChanged("AvailableProgrammers");
+                _availableProgramers = value;
+                OnPropertyChanged("AvailableProgramers");
             }
         }
 
@@ -106,20 +107,21 @@ namespace WorkTimeManager.ViewModels
             }
         }
 
-        public int IndexAvailableProgrammers
+        public int IndexAvailableProgramers
         {
             get
             {
-                return _selectedIndex;
+                return _selectedIndexplus;
             }
             set
             {
-                _selectedIndex = value;
-                OnPropertyChanged("IndexAvailableProgrammers");
-                SelectedAvailableProgrammers(this);
+                _selectedIndexplus = value;
+                OnPropertyChanged("IndexAvailableProgramers");
+                SelectedAvailableProgramers(this);
             }
         }
-
+        #endregion
+        #region Commands
         public ICommand GiveProgramer { get; private set; }
         public ICommand NotGiveProgramer { get; private set; }
         public ICommand GoodProject { get; private set; }
@@ -133,10 +135,16 @@ namespace WorkTimeManager.ViewModels
             _requestsList = new List<string>();
             _projectsNoManager = new List<string>();
             _projectsJudgeReady = new List<string>();
-            _availableProgrammers = new List<string>();
+            _availableProgramers = new List<string>();
+
+            //wypisywanie przy otwarciu
+            AvailableProgramers = CommandsRepository.GET_PROGRAMER_WITH_NO_LEADED_PROJECT();
+            ProjectsNoManager = CommandsRepository.GET_PROJECTS_WITHOUT_MANAGER();
+            ProjectsJudgeReady = CommandsRepository.GET_PROJECTS_TO_JUDGE();
 
             GiveProgramer = new RelayCommand(AcceptRequest);
             NotGiveProgramer = new RelayCommand(DiscardRequest);
+
             GoodProject = new RelayCommand(AcceptProject);
             BadProject = new RelayCommand(DiscardProject);
             AddManager = new RelayCommand(AddManagerToProject);
@@ -144,39 +152,65 @@ namespace WorkTimeManager.ViewModels
 
         private void AcceptRequest(object obj)
         {
-
+            
         }
         private void DiscardRequest(object obj)
         {
-
+            
         }
+
         private void AcceptProject(object obj)
         {
-
+            if (IndexProjectsJudgeReady >= 0)
+            {
+                CommandsRepository.CHANGE_STATUS_TO_ACCEPTED(ProjectsJudgeReady[IndexProjectsJudgeReady], IndexProjectsJudgeReady);
+                ProjectsJudgeReady = CommandsRepository.GET_PROJECTS_TO_JUDGE();
+            }
+           
         }
         private void DiscardProject(object obj)
         {
-
+            if (IndexProjectsJudgeReady >= 0)
+            {
+                CommandsRepository.CHANGE_STATUS_TO_INPROGRESS(ProjectsJudgeReady[IndexProjectsJudgeReady], IndexProjectsJudgeReady);
+                ProjectsJudgeReady = CommandsRepository.GET_PROJECTS_TO_JUDGE();
+            }
         }
         private void AddManagerToProject(object obj)
         {
-
+            if ((IndexAvailableProgramers >= 0) && (IndexProjectsNoManager >= 0))
+            {
+                CommandsRepository.ADD_MANAGER(ProjectsNoManager[IndexProjectsNoManager], IndexAvailableProgramers, IndexProjectsNoManager);
+            }
+            SelectedProjectsNoManager(this);
+            SelectedAvailableProgramers(this);
+            ProjectsNoManager = CommandsRepository.GET_PROJECTS_WITHOUT_MANAGER();
+            AvailableProgramers = CommandsRepository.GET_PROGRAMER_WITH_NO_LEADED_PROJECT();
         }
         private void SelectedRequestsList(object obj)
         {
-            _selectedRequestsList = RequestsList[_selectedIndex];
+            _selectedRequestsList = RequestsList[IndexRequestsList];
         }
         private void SelectedProjectsNoManager(object obj)
         {
-            _selectedProjectsNoManager = ProjectsNoManager[_selectedIndex];
+            if ((IndexAvailableProgramers >= 0) && (IndexProjectsNoManager >= 0))
+            {
+                _selectedProjectsNoManager = ProjectsNoManager[IndexProjectsNoManager];
+            }
         }
         private void SelectedProjectsJudgeReady(object obj)
         {
-            _selectedProjectsJudgeReady = ProjectsJudgeReady[_selectedIndex];
+            if (IndexProjectsJudgeReady >= 0)
+            {
+                _selectedProjectsJudgeReady = ProjectsJudgeReady[IndexProjectsJudgeReady];
+            }
         }
-        private void SelectedAvailableProgrammers(object obj)
+        private void SelectedAvailableProgramers(object obj)
         {
-            _selectedAvailableProgrammers = AvailableProgrammers[_selectedIndex];
+            if ((IndexAvailableProgramers >= 0) && (IndexProjectsNoManager >= 0))
+            {
+                _selectedAvailableProgramers = AvailableProgramers[IndexAvailableProgramers];
+            }
         }
         #endregion
 

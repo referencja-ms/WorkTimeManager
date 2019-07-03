@@ -11,8 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WorkTimeManager.ViewModels;
 
-namespace WidokiTestowe
+namespace WorkTimeManager
 {
     /// <summary>
     /// Logika interakcji dla klasy BossWindow.xaml
@@ -22,6 +23,7 @@ namespace WidokiTestowe
         public BossWindow()
         {
             InitializeComponent();
+            this.DataContext = new BossVM();
         }
     }
 }
