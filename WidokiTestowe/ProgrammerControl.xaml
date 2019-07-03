@@ -5,18 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WorkTimeManager"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="510">
+             d:DesignHeight="450" d:DesignWidth="533">
     <Grid>
         <Label Content="Projekty:" HorizontalAlignment="Left" Height="32" Margin="16,10,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.72,0.477"/>
         <ComboBox ItemsSource="{Binding Projects}" SelectedIndex="{Binding SelectedIndex}" HorizontalAlignment="Left" Height="25" Margin="10,42,0,0" VerticalAlignment="Top" Width="185"/>
         <Label Content="Szczegóły" HorizontalAlignment="Left" Height="35" Margin="16,88,0,0" VerticalAlignment="Top" Width="93"/>
         <ListBox ItemsSource="{Binding ProjectDetails}" HorizontalAlignment="Left" Height="132" Margin="10,123,0,0" VerticalAlignment="Top" Width="179"/>
-        <ListBox ItemsSource="{Binding ProjectHistory}" HorizontalAlignment="Left" Height="304" Margin="194,123,0,0" VerticalAlignment="Top" Width="179"/>
+        <ListBox ItemsSource="{Binding ProjectHistory}" HorizontalAlignment="Left" Height="304" Margin="194,123,0,0" VerticalAlignment="Top" Width="204"/>
         <Label Content="Historia" HorizontalAlignment="Left" Height="35" Margin="200,88,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="Podaj godziny" HorizontalAlignment="Left" Height="35" Margin="385,88,0,0" VerticalAlignment="Top" Width="93"/>
-        <TextBox Text="{Binding Text}" HorizontalAlignment="Left" Height="35" Margin="378,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Command="{Binding AddRecord}" Content="Button" HorizontalAlignment="Left" Margin="378,163,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.36,0.509" Height="37"/>
+        <TextBox Text="{Binding Text}" HorizontalAlignment="Left" Height="35" Margin="403,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <Button Command="{Binding AddRecord}" Content="Dodaj" HorizontalAlignment="Left" Margin="403,163,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.36,0.509" Height="37"/>
         <Label Content="Współpracownicy" HorizontalAlignment="Left" Height="35" Margin="10,260,0,0" VerticalAlignment="Top" Width="111"/>
         <ListBox ItemsSource="{Binding Colleagues}" HorizontalAlignment="Left" Height="132" Margin="10,295,0,0" VerticalAlignment="Top" Width="179"/>
+        <Label Content="{Binding ErrorMessage}" HorizontalAlignment="Left" Margin="403,205,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </UserControl>

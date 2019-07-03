@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WorkTimeManager"
         xmlns:WidokiTestowe="clr-namespace:WorkTimeManager" x:Class="WorkTimeManager.ProgrammerWindow"
         mc:Ignorable="d"
-        Title="ProgrammerWindow" Height="auto" Width="800">
+        Title="ProgrammerWindow" Height="500" Width="593.119" ResizeMode="NoResize">
     <Grid>
         <WidokiTestowe:ProgrammerControl HorizontalAlignment="Left" Height="484" Margin="10,10,0,0" VerticalAlignment="Top" Width="553"/>
     </Grid>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,6 +12,7 @@ using WorkTimeManager.Models;
 namespace WorkTimeManager.ViewModels {
     public class ProgrammerVM : INotifyPropertyChanged {
         #region Private fields
+        private string _errorMessage;
         private List<string> _projects;
         private List<string> _projectDetails;
         private List<string> _projectHistory;
@@ -74,6 +76,13 @@ namespace WorkTimeManager.ViewModels {
             }
         }
         public string Text { get; set; }
+        public string ErrorMessage {
+            get { return _errorMessage; }
+            private set {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
         #endregion
         public ProgrammerVM() {
             _projects = new List<string>();
@@ -90,15 +99,22 @@ namespace WorkTimeManager.ViewModels {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
         private void LoadProjectInformations(object sender) {
-            if(SelectedIndex>=0) {
+            if (SelectedIndex >= 0) {
                 ProjectDetails = DBAccess.CommandsRepository.GetProjectDetails(Projects[SelectedIndex], DBAccess.DBConnection.LoggedUser.Position);
                 ProjectHistory = DBAccess.CommandsRepository.GetProjectHistoryForUser(DBAccess.DBConnection.LoggedUser.Login, Projects[SelectedIndex]);
                 Colleagues = DBAccess.CommandsRepository.GetProjectColleagues(Projects[SelectedIndex]);
             }
         }
         private void AddNewRecord(object obj) {
-            DBAccess.CommandsRepository.AddRegistryNote(DateTime.Now, DBAccess.DBConnection.LoggedUser.Login, Projects[SelectedIndex], Text);
-            LoadProjectInformations(this);
+            Regex rg = new Regex(@"^\d$");
+            if (rg.IsMatch(Text)&&Int32.Parse(Text)>0) {
+                DBAccess.CommandsRepository.AddRegistryNote(DateTime.Now, DBAccess.DBConnection.LoggedUser.Login, Projects[SelectedIndex], Text);
+                LoadProjectInformations(this);
+            }
+            else
+                ErrorMessage = "Proszę podać cyfrę!";
+
+
         }
     }
 }

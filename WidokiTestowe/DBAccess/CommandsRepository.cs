@@ -70,11 +70,11 @@ namespace WorkTimeManager.DBAccess {
                 command.Parameters.AddWithValue("@parameter1", projectName);
                 MySqlDataReader dr = command.ExecuteReader();
                 while (dr.Read()) {
-                    returnable.Add("Id " + dr["id"].ToString());
-                    returnable.Add("Status " + dr["status"].ToString());
-                    returnable.Add("Budget " + dr["budget"].ToString());
-                    returnable.Add("Deadline " + dr["deadline"].ToString());
-                    returnable.Add("Description " + dr["description"].ToString());
+                    returnable.Add("Id: " + dr["id"].ToString());
+                    returnable.Add("Status: " + dr["status"].ToString());
+                    returnable.Add("Budżet: " + dr["budget"].ToString());
+                    returnable.Add("Deadline: " + dr["deadline"].ToString());
+                    returnable.Add("Opis: " + dr["description"].ToString());
                 }
                 conn.Close();
             }
@@ -89,7 +89,7 @@ namespace WorkTimeManager.DBAccess {
                 command.Parameters.AddWithValue("@parameter2", project);
                 MySqlDataReader dr = command.ExecuteReader();
                 while (dr.Read()) {
-                    returnable.Add("Date: "+dr["registrydate"].ToString() + "Hours: " + dr["hours"]);
+                    returnable.Add("Data: "+dr["registrydate"].ToString() + " Godziny: " + dr["hours"]);
                 }
                 conn.Close();
             }
@@ -99,11 +99,12 @@ namespace WorkTimeManager.DBAccess {
             List<string> returnable = new List<string>();
             using (MySqlCommand command = conn.CreateCommand()) {
                 conn.Open();
-                command.CommandText = "select user from worktasks where projectid=(select id from projects where name=@parameter2)";
+                //command.CommandText = "select user from worktasks where projectid=(select id from projects where name=@parameter2)";
+                command.CommandText = "select firstname, lastname from users, worktasks where worktasks.projectid=(select id from projects where name=@parameter2) and login=worktasks.user";
                 command.Parameters.AddWithValue("@parameter2", project);
                 MySqlDataReader dr = command.ExecuteReader();
                 while (dr.Read()) {
-                    returnable.Add(dr["user"].ToString());
+                    returnable.Add(dr["firstname"].ToString()+" "+dr["lastname"].ToString());
                 }
                 conn.Close();
             }
