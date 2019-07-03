@@ -65,7 +65,7 @@ namespace WorkTimeManager.ViewModels
                 //Wyświetlenie odpowiednich okien po zalogowaniu
                 Console.WriteLine("Zalogowano");
                 Password = "";
-                switch (DBAccess.DBConnection.Instance.LoggedUser.Position)
+                switch (DBAccess.DBConnection.LoggedUser.Position)
                 {
                     case "admin":
                         //new AdminWindow().Show();
