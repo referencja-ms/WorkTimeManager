@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkTimeManager"
         mc:Ignorable="d"
-        Title="Administrator" Height="510" Width="800">
+        Title="Administrator" Height="560" Width="800">
     <Grid>
         <TabControl>
-            <TabItem Header="User management">
+            <TabItem Header="Zarządzanie użytkownikami">
                 <local:UsersManagement Margin="0,0,0,0" />
             </TabItem>
 
-            <TabItem Header="Project management">
+            <TabItem Header="Zarządzanie projektami">
                 <local:ProjectsManagement Margin="0,0,0,0" />
             </TabItem>
 
-            <TabItem Header="Customer management">
+            <TabItem Header="Zarządzanie klientami">
                 <local:CustomersManagement Margin="0,0,0,0" />
             </TabItem>
         </TabControl>

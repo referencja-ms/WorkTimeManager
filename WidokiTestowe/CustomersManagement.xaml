@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WorkTimeManager"
              mc:Ignorable="d" 
-             d:DesignHeight="460" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -46,10 +46,10 @@
 
         <StackPanel Grid.Column="1" Margin="5 10 10 10">
             <TextBlock Text="Lista klientów" />
-            <Button Content="Wczytaj listę"  Command="{Binding LoadCustomersCommand}" />
             <ListView ItemsSource="{Binding CustomerObjectList, Mode=OneWay}" SelectedIndex="{Binding SelectedIndex}"
                       Height="400">
             </ListView>
+            <TextBlock Foreground="DarkRed" FontSize="15" Text="{Binding Message}"></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

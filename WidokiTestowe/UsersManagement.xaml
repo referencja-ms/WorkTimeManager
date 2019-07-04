@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WorkTimeManager"
              mc:Ignorable="d" 
-             d:DesignHeight="460" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -26,19 +26,22 @@
             <TextBox x:Name="email" Margin="0 0 0 10" Text="{Binding Email, Mode=TwoWay}" />
 
             <TextBlock Text="Adres" />
-            <TextBox x:Name="address" Margin="0 0 0 10" Text="{Binding Address, Mode=TwoWay}" />
+            <TextBox  Margin="0 0 0 10" Text="{Binding Address, Mode=TwoWay}" />
 
             <TextBlock Text="Numer telefonu" />
-            <TextBox x:Name="phoneNumber" Margin="0 0 0 10" Text="{Binding PhoneNumber, Mode=TwoWay}" />
+            <TextBox  Margin="0 0 0 10" Text="{Binding PhoneNumber, Mode=TwoWay}" />
 
             <TextBlock Text="Pozycja" />
-            <TextBox x:Name="position" Margin="0 0 0 10" Text="{Binding Position, Mode=TwoWay}" />
+            <TextBox Margin="0 0 0 10" Text="{Binding Position, Mode=TwoWay}" />
 
             <TextBlock Text="Pensja" />
-            <TextBox x:Name="salary" Margin="0 0 0 10" Text="{Binding Salary, Mode=TwoWay}" />
+            <TextBox Margin="0 0 0 10" Text="{Binding Salary, Mode=TwoWay}" />
 
             <TextBlock Text="Ilość godzin" />
-            <TextBox x:Name="hours" Margin="0 0 0 10" Text="{Binding Hours, Mode=TwoWay}" />
+            <TextBox Margin="0 0 0 10" Text="{Binding Hours, Mode=TwoWay}" />
+
+            <TextBlock Text="Hasło" />
+            <TextBox Margin="0 0 0 10" Text="{Binding Password, Mode=TwoWay}" />
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -58,8 +61,9 @@
 
         <StackPanel Grid.Column="1" Margin="5 10 10 10">
             <TextBlock Text="Lista użytkowników" />
-            <ListBox ItemsSource="{Binding UsersList, Mode=OneWay}"
+            <ListBox ItemsSource="{Binding UserObjectList, Mode=OneWay}" SelectedIndex="{Binding SelectedIndex}"
                      Height="400" />
+            <TextBlock Foreground="DarkRed" FontSize="15" Text="{Binding Message}"></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

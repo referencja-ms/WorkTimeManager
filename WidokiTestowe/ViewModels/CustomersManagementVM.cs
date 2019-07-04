@@ -21,9 +21,12 @@ namespace WorkTimeManager.ViewModels
         private string _phoneNumber;
         private string _address;
         private int _selectedIndex;
-        Customer _selectedCustomer;
+        private string selectedNIP;
+        private Customer _selectedCustomer;
         private List<string> _customerStringList = new List<string>();
         private List<Customer> _customerObjectsList = new List<Customer>();
+
+        private string _message;
         #endregion
 
         #region Properties
@@ -85,6 +88,7 @@ namespace WorkTimeManager.ViewModels
                 _selectedIndex = value;
                 OnPropertyChanged("SelectedIndex");
                 _selectedCustomer = CustomerObjectList[_selectedIndex];
+                selectedNIP = _selectedCustomer.NIP;
                 SelectCustomer(this);
             }
         }
@@ -92,7 +96,8 @@ namespace WorkTimeManager.ViewModels
         public List<string> CustomerStringList
         {
             get { return _customerStringList; }
-            set {
+            set
+            {
                 _customerStringList = value;
                 OnPropertyChanged("CustomerStringList");
             }
@@ -107,12 +112,21 @@ namespace WorkTimeManager.ViewModels
                 OnPropertyChanged("CustomerObjectList");
             }
         }
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged("Message");
+            }
+        }
         #endregion
 
         #region Commands
         public ICommand AddCustomerCommand { get; private set; }
         public ICommand UpdateCustomerCommand { get; private set; }
-        public ICommand LoadCustomersCommand { get; private set; }
         public ICommand ClearFormCommand { get; private set; }
         public ICommand SelectCustomerCommand { get; private set; }
         #endregion
@@ -123,11 +137,12 @@ namespace WorkTimeManager.ViewModels
 
         public CustomersManagementVM()
         {
-            LoadCustomersCommand = new RelayCommand(LoadCustomersFromDatabase);
             AddCustomerCommand = new RelayCommand(AddCustomer);
             ClearFormCommand = new RelayCommand(ClearForm);
             UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
             SelectCustomerCommand = new RelayCommand(SelectCustomer);
+            LoadCustomersFromDatabase();
+            RefreshCustomerList();
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -135,26 +150,78 @@ namespace WorkTimeManager.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void LoadCustomersFromDatabase()
+        {
+            CommandsRepository.GET_ALL_CUSTOMERS();
+            CustomerObjectList = CommandsRepository.CustomersList;
+        }
+
         private void AddCustomer(object obj)
         {
-            Customer customer = new Customer(NIP, Name, Email, PhoneNumber, Address);
-            CustomerObjectList.Add(customer);
-            Console.WriteLine("Customer added");
-            RefreshCustomerList();
-            PrintAllFromCollection(CustomerStringList);
+            try
+            {
+                Customer customer = new Customer(NIP, Name, Email, PhoneNumber, Address);
+                if (Validator.IsCustomerValid(customer))
+                {
+                    if (CommandsRepository.ADD_CUSTOMER(customer))
+                    {
+                        CustomerObjectList.Add(customer);
+                        RefreshCustomerList();
+                        Message = "";
+                    }
+                    else
+                    {
+                        Message = "Nie można dodać klienta";
+                    }
+                }
+                else
+                {
+                    Message = "Niektóre pola są niepoprawne";
+                }
+            }
+            catch (Exception)
+            {
+                Message = "Nie można dodać klienta";
+            }
         }
 
         private void UpdateCustomer(object obj)
         {
-            //UPDATE Customers SET
-            //name = "@Name", emailAddress = "@Email", phoneNumber = "@PhoneNumber", address = "@Address";
-            //WHERE NIP = "@NIP";
-            _selectedCustomer.NIP = NIP;
-            _selectedCustomer.Name = Name;
-            _selectedCustomer.Email = Email;
-            _selectedCustomer.PhoneNumber = PhoneNumber;
-            _selectedCustomer.Address = Address;
-            RefreshCustomerList();
+            if (IsNIPCorrect())
+            {
+                _selectedCustomer.NIP = NIP;
+                _selectedCustomer.Name = Name;
+                _selectedCustomer.Email = Email;
+                _selectedCustomer.PhoneNumber = PhoneNumber;
+                _selectedCustomer.Address = Address;
+
+                if (Validator.IsCustomerValid(_selectedCustomer))
+                {
+                    if (CommandsRepository.UPDATE_CUSTOMER(_selectedCustomer, selectedNIP))
+                    {
+                        RefreshCustomerList();
+                        Message = "";
+                    }
+                    else
+                    {
+                        Message = "Nie można zaktualizować klienta";
+                    }
+                }
+                else
+                {
+                    Message = "Niektóre pola są niepoprawne";
+                }
+            }
+            else
+            {
+                Message = "Nie można zaktualizować klienta";
+            }
+        }
+
+        private bool IsNIPCorrect()
+        {
+            if (NIP == selectedNIP) return true;
+            return false;
         }
 
         private void SelectCustomer(object obj)
@@ -166,11 +233,6 @@ namespace WorkTimeManager.ViewModels
             Address = _selectedCustomer.Address;
         }
 
-        private void LoadCustomersFromDatabase(object obj)
-        {
-            Console.WriteLine("UsersLoaded");
-        }
-
         private void ClearForm(object obj)
         {
             NIP = "";
@@ -178,14 +240,6 @@ namespace WorkTimeManager.ViewModels
             Email = "";
             PhoneNumber = "";
             Address = "";
-        }
-
-        private void PrintAllFromCollection(List<string> collection)
-        {
-            foreach (string element in collection)
-            {
-                Console.WriteLine(element);
-            }
         }
 
         private void RefreshCustomerList()

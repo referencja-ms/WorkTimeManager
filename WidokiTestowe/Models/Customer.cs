@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace WorkTimeManager
+namespace WorkTimeManager.Models
 {
     public class Customer
     {
@@ -20,7 +20,7 @@ namespace WorkTimeManager
         #region Constructors
         public Customer(MySqlDataReader dataReader)
         {
-            NIP = dataReader["customerNIP"].ToString();
+            NIP = dataReader["NIP"].ToString();
             Name = dataReader["name"].ToString();
             Email = dataReader["emailAddress"].ToString();
             PhoneNumber = dataReader["phoneNumber"].ToString();
