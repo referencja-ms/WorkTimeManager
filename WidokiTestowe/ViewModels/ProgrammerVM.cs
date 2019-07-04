@@ -106,15 +106,7 @@ namespace WorkTimeManager.ViewModels {
             }
         }
         private void AddNewRecord(object obj) {
-            Regex rg = new Regex(@"^\d$");
-            if (rg.IsMatch(Text)&&Int32.Parse(Text)>0) {
-                DBAccess.CommandsRepository.AddRegistryNote(DateTime.Now, DBAccess.DBConnection.LoggedUser.Login, Projects[SelectedIndex], Text);
-                LoadProjectInformations(this);
-            }
-            else
-                ErrorMessage = "Proszę podać cyfrę!";
-
-
+            DBAccess.CommandsRepository.ShowRequests();
         }
     }
 }

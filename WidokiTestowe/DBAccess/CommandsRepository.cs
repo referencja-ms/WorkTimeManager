@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WorkTimeManager.Models;
 
 namespace WorkTimeManager.DBAccess {
     public static class CommandsRepository {
@@ -132,6 +133,58 @@ namespace WorkTimeManager.DBAccess {
                 command.ExecuteNonQuery();
                 conn.Close();
             }
+        }
+        public static void ShowRequests() {
+            List<Request> wzracalne = new List<Request>();
+            List<string> dupa = new List<string>();
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "Select * from requests";
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    wzracalne.Add(new Request(dr));
+                }
+                conn.Close();
+            }
+            foreach(var req in wzracalne) {
+                dupa.Add(Odczaruj(req));
+            }
+            foreach (var d in dupa)
+                Console.WriteLine(d);
+        }
+        private static string Odczaruj(Request req) {
+            string builder = "";
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "select firstname, lastname from users where login = @param";
+                command.Parameters.AddWithValue("@param", req.Login1);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    builder+=dr["firstname"].ToString() + " " + dr["lastname"].ToString() + " ";
+                }
+                conn.Close();
+            }
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "select firstname, lastname from users where login = @param";
+                command.Parameters.AddWithValue("@param", req.Login2);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    builder += dr["firstname"].ToString() + " " + dr["lastname"].ToString() + " ";
+                }
+                conn.Close();
+            }
+            using (MySqlCommand command = conn.CreateCommand()) {
+                conn.Open();
+                command.CommandText = "select name from projects where id = @param";
+                command.Parameters.AddWithValue("@param", req.Project);
+                MySqlDataReader dr = command.ExecuteReader();
+                while (dr.Read()) {
+                    builder += dr["name"].ToString();
+                }
+                conn.Close();
+            }
+            return builder;
         }
     }
 }
