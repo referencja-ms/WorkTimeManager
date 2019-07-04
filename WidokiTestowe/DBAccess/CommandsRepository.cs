@@ -328,10 +328,7 @@ namespace WorkTimeManager.DBAccess {
                 //utworzenie zapytania do bazy o pozycję użytkownika
                 MySqlCommand command = conn.CreateCommand();
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "UPDATE projects SET " +
-                    "name = @name, status = @status, budget = @budget, timeBudget = @timeBudget, " +
-                    "deadline = @deadline, description = @description, customerNIP = @customerNIP " +
-                    "WHERE id = @id;";
+                command.CommandText = "UPDATE projects SET name = @name, status = @status, budget = @budget, timeBudget = @timeBudget, deadline = @deadline, description = @description, customerNIP = @customerNIP  WHERE id = @id;";
                 command.Parameters.Add(new MySqlParameter("@name", project.Name));
                 command.Parameters.Add(new MySqlParameter("@status", project.Status));
                 command.Parameters.Add(new MySqlParameter("@budget", project.Budget));
