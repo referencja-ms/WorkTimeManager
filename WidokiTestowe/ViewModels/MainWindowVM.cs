@@ -70,7 +70,13 @@ namespace WorkTimeManager.ViewModels
                     case "admin":
                         new AdminWindow().Show();
                         break;
+                    case "Admin":
+                        new AdminWindow().Show();
+                        break;
                     case "szef":
+                        new BossWindow().Show();
+                        break;
+                    case "Szef":
                         new BossWindow().Show();
                         break;
                     default:
