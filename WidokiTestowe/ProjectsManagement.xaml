@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WorkTimeManager.ProjectsManagement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WorkTimeManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="10 10 5 10">
+            <TextBlock Text="Nazwa" />
+            <TextBox x:Name="projectName" Margin="0 0 0 10" Text="{Binding Name, Mode=TwoWay}" />
+
+            <TextBlock Text="Status (Zaakceptowany, W trakcie, Zakończony)" />
+            <TextBox Margin="0 0 0 10" Text="{Binding Status, Mode=TwoWay}" />
+
+            <TextBlock Text="Budżet" />
+            <TextBox x:Name="budget" Margin="0 0 0 10" Text="{Binding Budget, Mode=TwoWay}" />
+
+            <TextBlock Text="Budżet czasowy" />
+            <TextBox x:Name="timeBudget" Margin="0 0 0 10" Text="{Binding TimeBudget, Mode=TwoWay}" />
+
+            <TextBlock Text="Deadline" />
+            <DatePicker x:Name="deadline" Margin="0 0 0 10" SelectedDate="{Binding Deadline, Mode=TwoWay}" />
+
+            <TextBlock Text="Opis" />
+            <TextBox x:Name="description" Margin="0 0 0 10" Text="{Binding Description, Mode=TwoWay}" />
+
+            <TextBlock Text="NIP klienta" />
+            <TextBox x:Name="customerNIP" Margin="0 0 0 10" Text="{Binding CustomerNIP, Mode=TwoWay}" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Dodaj" Margin="5" 
+                        Command="{Binding AddProjectCommand}" />
+                <Button Grid.Column="1" Content="Zaktualizuj" Margin="5" 
+                        Command="{Binding UpdateProjectCommand}" />
+                <Button Grid.Column="2" Content="Wyczyść formularz" Margin="5" 
+                        Command="{Binding ClearFormCommand}" />
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="5 10 10 10">
+            <TextBlock Text="Lista projektów" />
+            <ListBox ItemsSource="{Binding ProjectObjectList, Mode=OneWay}" SelectedIndex="{Binding SelectedIndex}"
+                     Height="400" />
+            <TextBlock Foreground="DarkRed" FontSize="15" Text="{Binding Message}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

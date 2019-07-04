@@ -68,7 +68,7 @@ namespace WorkTimeManager.ViewModels
                 switch (DBAccess.DBConnection.LoggedUser.Position)
                 {
                     case "admin":
-                        //new AdminWindow().Show();
+                        new AdminWindow().Show();
                         break;
                     case "szef":
                         new BossWindow().Show();

@@ -113,8 +113,6 @@ namespace WorkTimeManager.ViewModels {
             }
             else
                 ErrorMessage = "Proszę podać cyfrę!";
-
-
         }
     }
 }
