@@ -39,7 +39,7 @@ namespace WorkTimeManager.Models
 
         public override string ToString()
         {
-            return $"{NIP} {Name} {Email} {PhoneNumber} {Address}";
+            return $"{NIP} {Name} {Address}";
         }
     }
 }

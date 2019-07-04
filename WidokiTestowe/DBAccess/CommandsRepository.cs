@@ -270,7 +270,7 @@ namespace WorkTimeManager.DBAccess {
                     reader.Read();
                     while (reader.Read())
                     {
-                        ProjectsList.Add(new Project(reader));
+                        ProjectsList.Add(new Project(reader, true));
                     }
                     return "projects-loaded";
                 }

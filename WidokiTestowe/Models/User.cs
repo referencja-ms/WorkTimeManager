@@ -56,7 +56,7 @@ namespace WorkTimeManager.Models
 
         public override string ToString()
         {
-            return $"{Login} {FirstName} {LastName} {Email} {PhoneNumber} {Address} {Position} {Salary} {Hours}";
+            return $"{FirstName} {LastName} {Position}";
         }
     }
 }

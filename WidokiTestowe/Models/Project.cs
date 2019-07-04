@@ -24,8 +24,8 @@ namespace WorkTimeManager.Models {
         public Project(IDataReader dataReader) {
             _name = dataReader["name"].ToString();
         }
-		
-		public Project (MySqlDataReader reader)
+
+        public Project(MySqlDataReader reader, bool nothing)
         {
             Id = Convert.ToInt32(reader["id"]);
             Name = reader["name"].ToString();
@@ -36,8 +36,8 @@ namespace WorkTimeManager.Models {
             Description = reader["description"].ToString();
             CustomerNIP = reader["customerNIP"].ToString();
         }
-		
-		public Project(string name, string status, int budget, int timeBudget, DateTime deadline, string description, string customerNIP)
+
+        public Project(string name, string status, int budget, int timeBudget, DateTime deadline, string description, string customerNIP)
         {
             Name = name;
             Status = status;
@@ -49,7 +49,7 @@ namespace WorkTimeManager.Models {
         }
 		
         public override string ToString() {
-            return $"{_name}";
+            return $"{Name}";
         }
     }
 }
