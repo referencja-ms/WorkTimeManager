@@ -92,7 +92,6 @@ namespace WorkTimeManager.ViewModels {
             SelectedIndex = -1;
             AddRecord = new RelayCommand(AddNewRecord);
             Projects = DBAccess.CommandsRepository.GetUserProjects(DBAccess.DBConnection.LoggedUser.Login);
-
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propName) {

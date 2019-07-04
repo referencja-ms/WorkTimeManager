@@ -8,7 +8,6 @@ using MySql.Data.MySqlClient;
 
 namespace WorkTimeManager.Models {
     public class Project {
-        private string _name;
 		
 		#region Properties
 		public int Id { get; set; }
@@ -22,7 +21,7 @@ namespace WorkTimeManager.Models {
 		#endregion
 		
         public Project(IDataReader dataReader) {
-            _name = dataReader["name"].ToString();
+            Name = dataReader["name"].ToString();
         }
 
         public Project(MySqlDataReader reader, bool nothing)
